@@ -6,6 +6,7 @@ Request<-
             headers=list(),
             path=NULL,
             method=NULL,
+            ip=NULL,
             raw=NULL,
             content_type=NULL,
             protocol="http",
@@ -18,8 +19,8 @@ Request<-
 
             initialize=function(req){
               self$raw<-req
-              self$path<-req$PATH_INFO
               self$ip<-paste0(req$REMOTE_ADDR, ':', req$REMOTE_PORT)
+              self$path<-req$PATH_INFO
               self$method<-toupper(req$REQUEST_METHOD)
 
               if(length(req$CONTENT_TYPE)>0) self$content_type<-tolower(req$CONTENT_TYPE)
